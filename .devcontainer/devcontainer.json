@@ -26,16 +26,19 @@
     "jupyter.jupyterServerType": "local",
     "python.defaultInterpreterPath": "python",
     "python.terminal.activateEnvironment": true, // set to 'false' if this breaks 'send to ipython`
-    "r.alwaysUseActiveTerminal": false,
+    "r.alwaysUseActiveTerminal": true,
     "r.rmarkdown.knit.defaults.knitWorkingDirectory": "workspace root",
     "r.rterm.linux": "/usr/local/bin/radian",  // way better than base-R interpreter
     "r.sessionWatcher": true
+  },
+  "remoteEnv": {
+    "DOCKERFILE_PATH": "${containerWorkspaceFolder}/${localWorkspaceFolderBasename}"  // allows flexibility in root folder name
   },
   "extensions": [
     "alefragnani.project-manager",
     "eriklynd.json-tools",
     "esbenp.prettier-vscode",
-    "Ikuyadeu.r",
+    "reditorsupport.r",
     "ionutvmi.path-autocomplete",
     "ms-python.python",
     "ms-python.vscode-pylance",

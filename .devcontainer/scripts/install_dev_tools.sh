@@ -4,7 +4,7 @@
 
 # install packages required for VSCode-R (use renv to copy to cache)
 R --quiet --no-init-file -e "renv::install(c('jsonlite', 'rlang'))"
-R --quiet --no-init-file -e "renv::install(c('languageserver', 'httpgd'))"
+R --quiet --no-init-file -e "renv::install(c('languageserver', 'httpgd', 'rmarkdown'))"
 
 # add VSCode-R config options to .RProfile
 echo -e '
@@ -17,11 +17,8 @@ options(vsc.use_httpgd = TRUE)
 # add radian console
 sudo /usr/bin/pip3 install radian
 
-
 ## Add development tools to Conda base environment
-
-# install conda/python dev tools
-conda env update --name base -f docker_meta/.devcontainer/config/base_dev.yml
+conda env update --name base -f $DOCKERFILE_PATH/.devcontainer/config/base_dev.yml
 
 
 ## Other useful settings
