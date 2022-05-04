@@ -29,7 +29,8 @@
     "r.alwaysUseActiveTerminal": true,
     "r.rmarkdown.knit.defaults.knitWorkingDirectory": "workspace root",
     "r.rterm.linux": "/usr/local/bin/radian",  // way better than base-R interpreter
-    "r.sessionWatcher": true
+    "r.sessionWatcher": true,
+    "projectManager.projectsLocation": "/home/user/"
   },
   "remoteEnv": {
     "DOCKERFILE_PATH": "${containerWorkspaceFolder}/${localWorkspaceFolderBasename}"  // allows flexibility in root folder name

@@ -23,6 +23,9 @@ conda env update --name base -f $DOCKERFILE_PATH/.devcontainer/config/base_dev.y
 
 ## Other useful settings
 
+# add initial project.json file in accessible location
+cp $DOCKERFILE_PATH/.devcontainer/config/projects.json $HOME/projects.json
+
 # add mouse scrolling in tmux 
 echo '
 set -g mouse on
