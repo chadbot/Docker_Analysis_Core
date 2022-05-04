@@ -54,6 +54,7 @@ RUN apt-get update --fix-missing \
         libglpk-dev \
         libxml2-dev \
         libxt6 \
+        pandoc \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* \
     # install core R packages
@@ -88,7 +89,8 @@ COPY config .
 RUN touch .sudo_as_admin_successful
 
 # configure conda
-RUN /opt/conda/bin/conda init \
+RUN /opt/conda/bin/conda update -y -n base -c defaults conda \
+    && /opt/conda/bin/conda init \
     && /opt/conda/bin/conda config --add channels conda-forge \
     # configure base conda environment
     && /opt/conda/bin/conda env update -f base.yml \
