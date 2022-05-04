@@ -1,0 +1,51 @@
+{
+  "name": "analysis_meta_container",
+  "build": {
+    "dockerfile": "../Docker/Dockerfile"
+  },
+  // "image": "analysis_base:latest",   // use this OR "build" setting
+  "runArgs": [
+    "--hostname=projdev"
+  ],
+  // set workspace to projects folder for access to all projects
+  "workspaceMount": "type=bind,src=${localEnv:HOME}/projects,dst=/home/user/projects", // for all projects
+  "workspaceFolder": "/home/user/projects",
+  "containerEnv": {
+    "WORKSPACE": "/home/user/projects",
+  },
+  // define additional mounts - see example
+  // "mounts": [
+  //   "type=bind,source=${localEnv:HOME}/lae_data,target=/home/user/lae_data",
+  // ],
+  // additional commands/scripts to run during container build
+  "updateContentCommand": "bash ${localWorkspaceFolderBasename}/.devcontainer/scripts/install_dev_tools.sh", // runs once on container creation
+  // "postCreateCommand": "",
+  // "postStartCommand": "",    // runs at every attach
+  // vscode settings and extensions
+  "settings": {
+    "jupyter.jupyterServerType": "local",
+    "python.defaultInterpreterPath": "python",
+    "python.terminal.activateEnvironment": true, // set to 'false' if this breaks 'send to ipython`
+    "r.alwaysUseActiveTerminal": false,
+    "r.rmarkdown.knit.defaults.knitWorkingDirectory": "workspace root",
+    "r.rterm.linux": "/usr/local/bin/radian",  // way better than base-R interpreter
+    "r.sessionWatcher": true
+  },
+  "extensions": [
+    "alefragnani.project-manager",
+    "eriklynd.json-tools",
+    "esbenp.prettier-vscode",
+    "Ikuyadeu.r",
+    "ionutvmi.path-autocomplete",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-toolsai.jupyter",
+    "ms-toolsai.jupyter-keymap",
+    "ms-toolsai.jupyter-renderers",
+    "redhat.vscode-yaml",
+    "richie5um2.vscode-sort-json",
+    "sleistner.vscode-fileutils",
+    "yzhang.markdown-all-in-one",
+    "ZainChen.json"
+  ]
+}
