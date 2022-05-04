@@ -26,7 +26,7 @@ conda env update --name base -f $DOCKERFILE_PATH/.devcontainer/config/base_dev.y
 # add mouse scrolling in tmux 
 echo '
 set -g mouse on
-' > ~/.tmux.conf
+' > $HOME/.tmux.conf
 
 # add mouse scrolling in screen
 echo '
@@ -34,4 +34,4 @@ echo '
 escape ^Bb
 # enable scrolling
 termcapinfo xterm* ti@:te@
-' > ~/.screenrc
+' > $HOME/.screenrc
