@@ -1,21 +1,25 @@
 {
-  "name": "analysis_meta_container",
+  "name": "analysis_container",
+  // choose "build" or "image", but not both
   "build": {
     "dockerfile": "../Docker/Dockerfile"
   },
-  // "image": "analysis_base:latest",   // use this OR "build" setting
+  // "image": "analysis_base:latest", // requires building image first.
   "runArgs": [
     "--hostname=projdev"
   ],
-  // set workspace to projects folder for access to all projects
-  "workspaceMount": "type=bind,src=${localEnv:HOME}/projects,dst=/home/user/projects", // for all projects
+  // set workspace to projects folder for access to all projects (requires '$HOME/projects' folder)
+  "workspaceMount": "type=bind,src=${localEnv:HOME}/projects,dst=/home/user/projects",
   "workspaceFolder": "/home/user/projects",
   "containerEnv": {
-    "WORKSPACE": "/home/user/projects",
+    "WORKSPACE": "${containerWorkspaceFolder}"
   },
-  // define additional mounts - see example
+  "remoteEnv": {
+    "DOCKERFILE_PATH": "${containerWorkspaceFolder}/${localWorkspaceFolderBasename}"  // allows flexibility in root folder name
+  },
+  // define additional mounts (e.g., shared data folder)
   // "mounts": [
-  //   "type=bind,source=${localEnv:HOME}/lae_data,target=/home/user/lae_data",
+  //   "type=bind,source=${localEnv:HOME}/shared_data,target=/home/user/shared_data",
   // ],
   // additional commands/scripts to run during container build
   "updateContentCommand": "bash ${localWorkspaceFolderBasename}/.devcontainer/scripts/install_dev_tools.sh", // runs once on container creation
@@ -25,15 +29,12 @@
   "settings": {
     "jupyter.jupyterServerType": "local",
     "python.defaultInterpreterPath": "python",
-    "python.terminal.activateEnvironment": true, // set to 'false' if this breaks 'send to ipython`
+    "python.terminal.activateEnvironment": true,  // set to 'false' if this breaks 'send to ipython`
     "r.alwaysUseActiveTerminal": true,
     "r.rmarkdown.knit.defaults.knitWorkingDirectory": "workspace root",
-    "r.rterm.linux": "/usr/local/bin/radian",  // way better than base-R interpreter
+    "r.rterm.linux": "/usr/local/bin/radian",  // better than Base-R interpreter
     "r.sessionWatcher": true,
-    "projectManager.projectsLocation": "/home/user/"
-  },
-  "remoteEnv": {
-    "DOCKERFILE_PATH": "${containerWorkspaceFolder}/${localWorkspaceFolderBasename}"  // allows flexibility in root folder name
+    "projectManager.projectsLocation": "/home/user/"  // easy to find and edit 
   },
   "extensions": [
     "alefragnani.project-manager",
