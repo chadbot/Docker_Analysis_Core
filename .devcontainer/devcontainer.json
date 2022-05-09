@@ -34,7 +34,7 @@
     "r.rmarkdown.knit.defaults.knitWorkingDirectory": "workspace root",
     "r.rterm.linux": "/usr/local/bin/radian",  // better than Base-R interpreter
     "r.sessionWatcher": true,
-    "projectManager.projectsLocation": "/home/user/"  // easy to find and edit 
+    "projectManager.projectsLocation": "~/projects/"  // easy to find and edit 
   },
   "extensions": [
     "alefragnani.project-manager",
